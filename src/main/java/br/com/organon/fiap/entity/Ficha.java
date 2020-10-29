@@ -16,27 +16,32 @@ public class Ficha {
     @GeneratedValue(generator = "ficha", strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @Column(name = "tipo_cadastro_ficha", nullable = false)
+    @Column(name = "tp_cadastro", nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoCadastro tipoCadastro;
 
-    @Column(name = "grau_parentesco_ficha", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Parentesco grauParentesco;
-
-    @Column(name = "tipo_sanguineo_ficha", nullable = false)
+    @Column(name = "tp_sanguineo", nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoSanguineo tipoSanguineo;
 
-    @Column(name = "peso_ficha", nullable = false)
+    @Column(name = "nm_peso", nullable = false)
     private double peso;
 
-    @Column(name = "idade_ficha", nullable = false)
-    private int indade;
+    @Column(name = "nm_idade", nullable = false)
+    private int idade;
 
-    @Column(name = "altura_ficha", nullable = false)
+    @Column(name = "nm_altura", nullable = false)
     private double altura;
 
+    public Ficha() { }
+
+    public Ficha(TipoCadastro tipoCadastro, TipoSanguineo tipoSanguineo, double peso, int idade, double altura) {
+        this.tipoCadastro = tipoCadastro;
+        this.tipoSanguineo = tipoSanguineo;
+        this.peso = peso;
+        this.idade = idade;
+        this.altura = altura;
+    }
 
     public int getId() {
         return id;
@@ -44,14 +49,6 @@ public class Ficha {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Parentesco getGrauParentesco() {
-        return grauParentesco;
-    }
-
-    public void setGrauParentesco(Parentesco grauParentesco) {
-        this.grauParentesco = grauParentesco;
     }
 
     public TipoSanguineo getTipoSanguineo() {
@@ -70,12 +67,12 @@ public class Ficha {
         this.peso = peso;
     }
 
-    public int getIndade() {
-        return indade;
+    public int getIdade() {
+        return idade;
     }
 
-    public void setIndade(int indade) {
-        this.indade = indade;
+    public void setIdade(int indade) {
+        this.idade = indade;
     }
 
     public double getAltura() {
