@@ -1,5 +1,6 @@
 package br.com.organon.fiap.entity;
 
+import br.com.organon.fiap.entity.enums.Parentesco;
 import br.com.organon.fiap.entity.enums.StatusMatch;
 
 import javax.persistence.*;
@@ -28,14 +29,29 @@ public class Match {
     @Column(name = "dt_hr_alteracao", nullable = false)
     private LocalDate dataAtualizacao;
 
+    @Column(name = "grau_parentesco", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Parentesco grauParentesco;
+
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "cd_ficha_doador", nullable = false, unique = true)
     private Ficha pacienteDoador;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "cd_ficha_doador", nullable = false, unique = true)
+    @JoinColumn(name = "cd_ficha_receptor", nullable = false, unique = true)
     private Ficha pacienteReceptor;
 
+    public Match() { }
+
+    public Match(String nomeFuncionario, StatusMatch status, LocalDate dataGravacao, LocalDate dataAtualizacao, Parentesco grauParentesco, Ficha pacienteDoador, Ficha pacienteReceptor) {
+        this.nomeFuncionario = nomeFuncionario;
+        this.status = status;
+        this.dataGravacao = dataGravacao;
+        this.dataAtualizacao = dataAtualizacao;
+        this.grauParentesco = grauParentesco;
+        this.pacienteDoador = pacienteDoador;
+        this.pacienteReceptor = pacienteReceptor;
+    }
 
     public int getId() {
         return id;
@@ -92,4 +108,13 @@ public class Match {
     public void setPacienteReceptor(Ficha pacienteReceptor) {
         this.pacienteReceptor = pacienteReceptor;
     }
+
+    public Parentesco getGrauParentesco() {
+        return grauParentesco;
+    }
+
+    public void setGrauParentesco(Parentesco grauParentesco) {
+        this.grauParentesco = grauParentesco;
+    }
 }
+
