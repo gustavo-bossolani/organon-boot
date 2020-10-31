@@ -16,10 +16,6 @@ public class Ficha {
     @GeneratedValue(generator = "ficha", strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @Column(name = "tp_cadastro", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TipoCadastro tipoCadastro;
-
     @Column(name = "tp_sanguineo", nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoSanguineo tipoSanguineo;
@@ -36,7 +32,6 @@ public class Ficha {
     public Ficha() { }
 
     public Ficha(TipoCadastro tipoCadastro, TipoSanguineo tipoSanguineo, double peso, int idade, double altura) {
-        this.tipoCadastro = tipoCadastro;
         this.tipoSanguineo = tipoSanguineo;
         this.peso = peso;
         this.idade = idade;
@@ -82,9 +77,4 @@ public class Ficha {
     public void setAltura(double altura) {
         this.altura = altura;
     }
-
-    public void setTipoCadastro(TipoCadastro tipoCadastro) {
-        this.tipoCadastro = tipoCadastro;
-    }
-
 }
